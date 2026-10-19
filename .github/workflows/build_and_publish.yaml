@@ -7,6 +7,8 @@ on:
         description: "Image tag to publish (e.g. latest)"
         required: true
         default: "dev"
+    schedule:
+      - cron: "0 7 * * *"   # 07:00 UTC daily
 
 env:
   IMAGE_REPO: kyuz0/amd-strix-halo-comfyui
@@ -72,9 +74,7 @@ jobs:
         with:
           images: docker.io/${{ env.IMAGE_REPO }}
           tags: |
-            type=raw,value=${{ github.event.inputs.tag }}
-            type=sha
-            type=raw,value={{date 'YYYYMMDD-HHmmss'}}
+            type=raw,value=${{ github.event.inputs.tag || 'nightly' }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
