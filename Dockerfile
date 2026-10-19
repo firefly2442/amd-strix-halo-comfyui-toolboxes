@@ -77,4 +77,7 @@ RUN chmod 0644 /etc/profile.d/zz-venv-last.sh
 # Disable core dumps in interactive shells (helps with recovering faster from ROCm crashes)
 RUN printf 'ulimit -S -c 0\n' > /etc/profile.d/90-nocoredump.sh && chmod 0644 /etc/profile.d/90-nocoredump.sh
 
+# required for writing to .triton folder
+RUN chmod u+w /root/
+
 CMD ["/bin/bash"]
