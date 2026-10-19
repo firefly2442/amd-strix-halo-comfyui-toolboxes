@@ -3,7 +3,7 @@ FROM registry.fedoraproject.org/fedora:rawhide
 # Base packages (keep compilers/headers for Triton JIT at runtime)
 RUN dnf -y install --setopt=install_weak_deps=False --nodocs \
     libdrm-devel python3.13 python3.13-devel git rsync libatomic bash ca-certificates curl \
-    gcc gcc-c++ binutils make git ffmpeg-free vim dialog \
+    gcc gcc-c++ binutils make ffmpeg-free vim dialog \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
 # Python venv
