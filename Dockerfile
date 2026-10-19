@@ -58,9 +58,7 @@ RUN git clone --depth=1 https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo /op
 
 # Permissions & trims (keep compilers/headers and installed shared libraries intact)
 RUN chmod -R a+rwX /opt && chmod +x /opt/*.sh || true && \
-    find /opt/venv -type d -name "__pycache__" -prune -exec rm -rf {} + && \
-    python -m pip cache purge || true && rm -rf /root/.cache/pip || true && \
-    dnf clean all && rm -rf /var/cache/dnf/*
+    find /opt/venv -type d -name "__pycache__" -prune -exec rm -rf {} +
 
 # Catch incompatible or damaged PyTorch shared libraries before publishing an image.
 RUN python -c 'import torch; print(torch.__version__)'
