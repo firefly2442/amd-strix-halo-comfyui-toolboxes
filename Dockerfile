@@ -78,6 +78,6 @@ RUN chmod 0644 /etc/profile.d/zz-venv-last.sh
 RUN printf 'ulimit -S -c 0\n' > /etc/profile.d/90-nocoredump.sh && chmod 0644 /etc/profile.d/90-nocoredump.sh
 
 # required for writing to .triton folder
-RUN chmod u+w /root/
+RUN chmod ug+rwx /root
 
 CMD ["/bin/bash"]
